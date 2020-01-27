@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -26,6 +27,7 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
+        publicPath: '/',
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
@@ -33,6 +35,9 @@ module.exports = {
             filename: 'index.html',
             template: './src/assets/index.html',
             // favicon: './assets/favicon.png'
+        }),
+        new webpack.DefinePlugin({
+            ITUNES_URL: 'https://itunes.apple.com/lookup'
         })
     ],
     devServer: {
