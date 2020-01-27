@@ -1,31 +1,17 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import Artist from '../components/artist/Artist'
-import { RouteComponentProps, useParams } from 'react-router'
+import { RouteComponentProps } from 'react-router'
+// import { useParams } from 'react-router'
+import { useSelector } from 'react-redux'
+import { TState, TArtist } from '../store/state'
 
 export interface IProps extends RouteComponentProps<{}> {}
 
 const ArtistContainer: FC<IProps> = () => {
-    const { id } = useParams()
+    // const { id } = useParams()
+    const artist = useSelector<TState, TArtist>(state => state.artist)
 
-    console.log(process.env.ITUNES_URL + '?id=' + id)
-
-    useEffect(() => {
-        // fetch(process.env.ITUNES_URL + '?id=' + id, {
-        //     method: 'GET',
-        //     mode: 'cors',
-        //     cache: 'no-cache',
-        //     credentials: 'same-origin',
-        //     headers: {
-        //        'Content-Type': 'application/json'
-        //     }
-        // })
-        // .then(res => res.json())
-        // .then(res => console.log(res))
-        // .catch(err => console.error(err))
-
-    }, [])
-
-    return <Artist id={ id } />
+    return <Artist artist={ artist } />
 }
 
 export default ArtistContainer
