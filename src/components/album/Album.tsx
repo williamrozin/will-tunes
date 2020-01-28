@@ -32,8 +32,6 @@ const Link = styled.a({
 })
 
 const Album: FC<Props> = props => {
-    console.log(props)
-
     const renderTracks = useCallback(() => {
         return props.album.songs.map(song => {
             return (

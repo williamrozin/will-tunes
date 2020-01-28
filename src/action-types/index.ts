@@ -1,0 +1,7 @@
+enum ACTIONS {
+    SET_ARTIST = 'SET_ARTIST',
+    GET_ARTIST_DETAILS = 'GET_ARTIST_DETAILS'
+}
+
+export default ACTIONS
+

@@ -37,8 +37,6 @@ const Details = styled.div({
 })
 
 const Bio: FC<Props> = props => {
-    console.log(props)
-
     return (
         <Container>
             <div className='cover-picture' />
