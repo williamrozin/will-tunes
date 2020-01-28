@@ -1,11 +1,12 @@
 import React, { FC, useCallback } from 'react'
-import { TArtist } from '../../store/state'
+import { TArtist, TAlbum } from '../../store/state'
 import styled from 'styled-components'
 import Bio from './bio/Bio'
 import Album from '../album/Album'
 
 type Props = {
     artist: TArtist
+    albums: TAlbum[]
 }
 
 const Container = styled.div({
@@ -16,7 +17,7 @@ const Container = styled.div({
 
 const Artist: FC<Props> = props => {
     const renderAlbums = useCallback(() => {
-        return props.artist.albums.map(album => {
+        return props.albums.map(album => {
             return (
                 <Album
                     key={ album.id }
@@ -24,7 +25,7 @@ const Artist: FC<Props> = props => {
                 />
             )   
         })
-    }, [props.artist.albums])
+    }, [props.albums])
 
     return (
         <Container>

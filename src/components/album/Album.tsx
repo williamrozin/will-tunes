@@ -11,6 +11,7 @@ type Props = {
 const Content = styled.div({
     display: 'flex',
     flex: 1,
+    marginBottom: '24px',
     padding: '0 24px',
     flexDirection: 'column'
 })

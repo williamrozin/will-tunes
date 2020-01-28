@@ -9,7 +9,7 @@ interface IAction {
 
 type PartialState = DeepPartial<TArtist>
 
-export default function exchangeReducer(state: PartialState = artist, action: IAction) {
+export default function artistReducer(state: PartialState = artist, action: IAction) {
     switch (action.type) {
         case actions.SET_ARTIST:
             return action.value
