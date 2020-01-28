@@ -27,6 +27,10 @@ const Bold = styled.b({
     margin: '0 4px'
 })
 
+const Link = styled.a({
+    gridArea: 'link'
+})
+
 const Album: FC<Props> = props => {
     console.log(props)
 
@@ -46,9 +50,9 @@ const Album: FC<Props> = props => {
             <AlbumDetails>
                 <img className='album-cover' src={ props.album.picture } />
                 <div className='display2'>{ props.album.title }</div>
-                <a className='action' href={ props.album.link || '' }>
+                <Link className='action' href={ props.album.link || '' }>
                     Listen on <Bold>Apple Music</Bold> &#8599;
-                </a>
+                </Link>
             </AlbumDetails>
             <EditorsNotes text={ props.album.editorsNotes } />
             { renderTracks() }
