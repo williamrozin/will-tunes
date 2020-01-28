@@ -61,6 +61,7 @@ const Bio: FC<Props> = props => {
                         title='Born'
                         subtitle={ format(new Date(props.bio.birthDate), 'MMM dd, yyyy') }
                     />
+                    <hr className='divisor' />
                 </Details>
             </Content>
         </Container>
