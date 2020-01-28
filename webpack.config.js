@@ -18,8 +18,16 @@ module.exports = {
                         options: { disable: true }
                     }
                 ]
-            }
-        ]
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                  'style-loader',
+                  'css-loader',
+                  'sass-loader',
+                ],
+              }
+        ],
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']

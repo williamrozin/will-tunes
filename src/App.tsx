@@ -8,6 +8,7 @@ import HomeContainer from './containers/HomeContainer'
 import ArtistContainer from './containers/ArtistContainer'
 import NotFoundContainer from './containers/NotFoundContainer'
 import { store } from './store'
+import './assets/styles.scss'
 
 const theme = {
     palette: {
