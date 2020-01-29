@@ -1,6 +1,7 @@
 export type TState = {
     artist: TArtist
     albums: TAlbum[]
+    search: TSearch
 }
 
 export type TArtist = {
@@ -40,6 +41,17 @@ export type TSong = {
     previewUrl: string
 }
 
+export type TSearch = {
+    searchText: string
+    suggestions: TSuggestion[]
+}
+
+export type TSuggestion = {
+    id: string
+    name: string
+    genre: TGenre
+}
+
 export const artist: TArtist = {
     id: '909253',
     name: 'Jack Jonhson',
@@ -62,7 +74,13 @@ export const artist: TArtist = {
 
 export const albums: TAlbum[] = []
 
+export const search: TSearch = {
+    searchText: '',
+    suggestions: []
+}
+
 export default {
     artist,
-    albums
+    albums,
+    search
 }

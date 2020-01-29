@@ -17,8 +17,6 @@ const ArtistContainer: FC<IProps> = () => {
         dispatch({ type: actions.GET_ARTIST_DETAILS, id })
     }, [id])
 
-    console.log(albums)
-
     return (
         <Artist
             artist={ artist }

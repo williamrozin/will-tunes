@@ -5,6 +5,7 @@ $white: #FFFFFF;
 $text: #545454;
 $secondary-text: #9c9c9e;
 $third-text: #e9e9e9;
+$hover: #F5F5F5;
 $radius: 4px;
 
 $play-icon: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PGc+PGc+PGc+PHBhdGggZD0iTTQzMS4zNiw4MC42NEEyNDgsMjQ4LDAsMSwwLDgwLjY0LDQzMS4zNiwyNDgsMjQ4LDAsMSwwLDQzMS4zNiw4MC42NFpNNDIwLjA1LDQyMC4wNUEyMzIsMjMyLDAsMCwxLDkxLjk1LDkxLjk1YTIzMiwyMzIsMCwwLDEsMzI4LjEsMzI4LjFaIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiNCRDUxNzEiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+PHBhdGggZD0iTTE3Niw0NjQuN2E3Ljk4Miw3Ljk4MiwwLDAsMS0yLjk2My0uNTcxQTIyNC4wNzcsMjI0LjA3NywwLDAsMSwzMiwyNTZhOCw4LDAsMCwxLDE2LDBBMjA4LjA3MywyMDguMDczLDAsMCwwLDE3OC45NjUsNDQ5LjI3MSw4LDgsMCwwLDEsMTc2LDQ2NC43WiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojQkQ1MTcxIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPjxwYXRoIGQ9Ik0yMTYuMDA5LDQ3Ni4zMDVhOC4wNzIsOC4wNzIsMCwwLDEtMS40ODItLjEzOGMtNS41NTctMS4wNDEtMTEuMTQxLTIuMzA5LTE2LjU5NS0zLjc3YTgsOCwwLDEsMSw0LjEzNi0xNS40NTVjNS4wNjMsMS4zNTUsMTAuMjQ1LDIuNTMzLDE1LjQwNSwzLjVhOCw4LDAsMCwxLTEuNDY0LDE1Ljg2NVoiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6I0JENTE3MSIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD48L2c+PHBhdGggZD0iTTIwOC41MzgsMzUyYTgsOCwwLDAsMS04LThWMTY4YTgsOCwwLDAsMSwxMi4xMzEtNi44NTFsMTQ1LjkyNCw4OGE4LDgsMCwwLDEsMCwxMy43bC0xNDUuOTI0LDg4QTgsOCwwLDAsMSwyMDguNTM4LDM1MlptOC0xNjkuODMzVjMyOS44MzNMMzM4Ljk3MSwyNTZaIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiNCRDUxNzEiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+PC9nPjwvZz4gPC9zdmc+);
@@ -73,6 +74,21 @@ a.action {
     }
 }
 
+input {
+    outline: none;
+    border-radius: $radius;
+    border-width: 2px;
+    border-style: solid;
+    border-color: $secondary-text;
+    transition: border ease-in-out 200ms;
+    padding: 6px 12px;
+    font-size: 1em;
+
+    &:focus {
+        border-color: $primary;
+    }
+}
+
 .cover-picture { 
     background-image: url('https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg');
     height: 208px;
@@ -80,6 +96,16 @@ a.action {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.display5 {
+    font-size: 4em;
+    font-weight: 900;
+}
+
+.display4 {
+    font-size: 3em;
+    font-weight: 700;
 }
 
 .display3 {
@@ -90,6 +116,14 @@ a.action {
 .display2 {
     font-size: 1.75em;
     font-weight: 700;
+}
+
+.primary {
+    color: $primary;
+}
+
+.secondary {
+    color: $secondary-text;
 }
 
 .body1 {
@@ -115,6 +149,12 @@ a.action {
 .heading {
     text-transform: uppercase;
     font-weight: 700;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 3;
 }
 
 hr.divisor {
@@ -164,5 +204,16 @@ div.track-details:hover {
 
     .track-cover {
         opacity: 0.2;
+    }
+}
+
+.suggestion {
+    padding: 12px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    border-radius: $radius;
+    &:hover {
+        background-color: $hover;
+        color: $primary;
     }
 }

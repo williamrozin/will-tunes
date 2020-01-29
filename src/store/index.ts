@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux'
 import saga from 'redux-saga'
 import reducers from '../reducers'
-import watchers from '../actions/artist'
+import watchers from '../actions'
 
 const sagaMiddleware = saga()
 

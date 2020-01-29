@@ -40,7 +40,7 @@ function getAlbumsInfo(albums: unknown) {
         // @ts-ignore
         .all(albums.map(album =>
             get({ id: album.collectionId, entity: 'song' })
-                .then(res => res.results)
+                .then(res => res?.results ?? [])
                 .then(tracks => ({
                     id: album.collectionId,
                     picture: album.artworkUrl100,
