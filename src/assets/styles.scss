@@ -64,6 +64,7 @@ a.action {
     line-height: 1.5em;
     cursor: pointer;
     width: fit-content;
+    width: -moz-fit-content;
     transition: all ease-in-out 200ms;
     text-decoration: none;
     justify-content: center;
@@ -91,7 +92,7 @@ input {
 
 .cover-picture { 
     background-image: url('https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg');
-    height: 208px;
+    height: 300px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

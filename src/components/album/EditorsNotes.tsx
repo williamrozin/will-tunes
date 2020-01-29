@@ -8,8 +8,9 @@ type Props = {
 const Content = styled.div({
     display: 'grid',
     flex: 1,
-    padding: '12px 0',
+    padding: '0 0 12px 0',
     gridGap: '6px',
+    gridArea: 'notes',
     flexDirection: 'column'
 })
 

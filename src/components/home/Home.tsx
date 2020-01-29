@@ -27,7 +27,7 @@ const Home: FC = () => {
 
     useEffect(() => {
         dispatch({ type: actions.SET_SEARCH_TEXT, searchText: debouncedSearch })
-}, [debouncedSearch])
+    }, [debouncedSearch])
 
     const handleChangeSearchText = (event: ChangeEvent<HTMLInputElement>) => {
         setSearchText(event.target.value)
@@ -42,7 +42,7 @@ const Home: FC = () => {
 
     return (
         <Content>
-            <div className='display5 primary'>WillTunes</div>
+            <div className='display5 primary'>willTunes</div>
             <input
                 placeholder='Search for an artist'
                 type='search'

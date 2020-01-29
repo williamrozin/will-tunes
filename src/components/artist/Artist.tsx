@@ -15,6 +15,13 @@ const Container = styled.div({
     flexDirection: 'column'
 })
 
+const Albums = styled.div`
+    flex: 1;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+`
+
 const Artist: FC<Props> = props => {
     const renderAlbums = useCallback(() => {
         return props.albums.map(album => {
@@ -36,7 +43,9 @@ const Artist: FC<Props> = props => {
                 bio={ props.artist.bio }
                 genre={ props.artist.genre }
             />
-            { renderAlbums() }
+            <Albums>
+                { renderAlbums() }
+            </Albums>
         </Container>
     )
 }
