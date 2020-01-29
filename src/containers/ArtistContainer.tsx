@@ -13,10 +13,11 @@ const ArtistContainer: FC<IProps> = () => {
     const artist = useSelector<TState, TArtist>(state => state.artist)
     const albums = useSelector<TState, TAlbum[]>(state => state.albums)
 
-
     useEffect(() => {
         dispatch({ type: actions.GET_ARTIST_DETAILS, id })
     }, [id])
+
+    console.log(albums)
 
     return (
         <Artist

@@ -60,7 +60,8 @@ function getAlbumsInfo(albums: unknown) {
                             duration: track.trackTimeMillis,
                             id: track.trackId,
                             picture: track.artworkUrl100,
-                            title: track.trackName
+                            title: track.trackName,
+                            previewUrl: track.previewUrl
                         }))
                 }))
         ))

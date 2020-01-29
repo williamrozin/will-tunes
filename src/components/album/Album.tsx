@@ -1,5 +1,5 @@
-import React, { FC, useCallback } from 'react'
-import { TAlbum } from '../../store/state'
+import React, { FC } from 'react'
+import { TAlbum, TSong } from '../../store/state'
 import styled from 'styled-components'
 import EditorsNotes from './EditorsNotes'
 import Track from '../track/Track'
@@ -33,16 +33,11 @@ const Link = styled.a({
 })
 
 const Album: FC<Props> = props => {
-    const renderTracks = useCallback(() => {
-        return props.album.songs.map(song => {
-            return (
-                <Track
-                    key={ song.id }
-                    track={ song }
-                />
-            )
-        })
-    }, [props.album.songs])
+    const renderTrack = (song: TSong, index: number) =>
+        <Track
+            key={ song.id + index }
+            track={ song }
+        />
 
     return (
         <Content>
@@ -54,7 +49,7 @@ const Album: FC<Props> = props => {
                 </Link>
             </AlbumDetails>
             <EditorsNotes text={ props.album.editorsNotes } />
-            { renderTracks() }
+            { props.album.songs.map(renderTrack) }
         </Content>
     )
 }
