@@ -73,7 +73,7 @@ const Bio: FC<Props> = props => {
                         <div className='display3'>{ props.name }</div>
                         <div className='body2 ellipsis'>{ props.resume }</div>
                         <a className='action' href={ props.link || '' }>
-                            View on <Bold>Apple Music</Bold> &#8599;
+                            View on <Bold>Apple Music</Bold> &#8599;&#xFE0E;
                         </a>
                     </Resume>
                     <Details>

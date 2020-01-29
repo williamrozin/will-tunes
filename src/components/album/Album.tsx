@@ -78,7 +78,7 @@ const Album: FC<Props> = props => {
                 <Cover className='album-cover' src={ props.album.picture } />
                 <Title className='display2'>{ props.album.title }</Title>
                 <Link className='action' href={ props.album.link || '' }>
-                    Listen on <Bold>Apple Music</Bold> &#8599;
+                    Listen on <Bold>Apple Music</Bold> &#8599;&#xFE0E;
                 </Link>
                 <EditorsNotes text={ props.album.editorsNotes } />
                 <Tracks>
