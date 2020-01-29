@@ -75,6 +75,10 @@ a.action {
     }
 }
 
+span.arrow {
+    content:'\2709\00FE0E';
+}
+
 input {
     outline: none;
     border-radius: $radius;
