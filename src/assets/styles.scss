@@ -75,8 +75,8 @@ a.action {
     }
 }
 
-span.arrow {
-    content:'\2709\00FE0E';
+span.arrow::before {
+    content:'↗\00FE0E';
 }
 
 input {
