@@ -53,6 +53,7 @@ module.exports = {
             "error",
             "never"
         ],
+        "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/triple-slash-reference": "error",
         "@typescript-eslint/unified-signatures": "error",
         "camelcase": "error",

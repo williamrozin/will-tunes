@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { TState, TArtist, TAlbum, THome } from '../store/state'
 import actions from '../action-types'
 
-export interface IProps extends RouteComponentProps<{}> {}
+export type IProps = RouteComponentProps<{}>
 
 const ArtistContainer: FC<IProps> = () => {
     const { id } = useParams()

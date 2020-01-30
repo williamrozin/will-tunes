@@ -28,8 +28,6 @@ export const get = async (options: TOptions) => {
 
     const path = `${url}${method}${queryParams}`
 
-    console.log(path)
-
     return fetch(path, {
         method: 'GET',
         mode: options.cors ? 'cors' : 'no-cors',
