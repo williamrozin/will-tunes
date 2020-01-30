@@ -56,6 +56,11 @@ export type TSuggestion = {
     genre: TGenre
 }
 
+export type TRelatedArtist = {
+    name: string
+    genre: TGenre
+}
+
 export const artist: TArtist = {
     id: '3492',
     name: 'ABBA',

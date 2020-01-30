@@ -3,6 +3,7 @@ import { TArtist, TAlbum } from '../../store/state'
 import styled from 'styled-components'
 import Bio from './bio/Bio'
 import Album from '../album/Album'
+import Related from './related/Related'
 
 type Props = {
     loading: boolean
@@ -29,11 +30,21 @@ const Container = styled.div({
     flexDirection: 'column'
 })
 
-const Albums = styled.div`
+const Subtitle = styled.div({
+    marginTop: '24px'
+})
+
+const Content = styled.div`
     flex: 1;
     max-width: 900px;
     width: 100%;
     margin: 0 auto;
+`
+
+const Featured = styled.div`
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 `
 
 const Artist: FC<Props> = props => {
@@ -68,9 +79,23 @@ const Artist: FC<Props> = props => {
                     bio={ props.artist.bio }
                     genre={ props.artist.genre }
                 />
-                <Albums>
+                <Content>
                     { renderAlbums() }
-                </Albums>
+                </Content>
+                <Content>
+                    <Subtitle className='display2'>Featured Artists</Subtitle>
+                    <Featured>
+                        <Related
+                            related={ {
+                                name: 'Bee Gees',
+                                genre: {
+                                    id: '0',
+                                    name: 'Pop'
+                                }
+                            } }
+                        />
+                    </Featured>
+                </Content>
             </Container>
         </>
     )
