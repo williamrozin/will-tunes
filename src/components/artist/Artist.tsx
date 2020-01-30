@@ -34,6 +34,10 @@ const Artist: FC<Props> = props => {
         })
     }, [props.albums])
 
+    if (!props.artist.id) {
+        return null
+    }
+
     return (
         <Container>
             <Bio

@@ -9,13 +9,18 @@ type TAction = {
 
 function* getSuggestions(action: TAction) {
     try {
-        const params = {
-            term: action.searchText.replace(/ /g, '+').toLowerCase(),
-            entity: 'musicArtist',
-            limit: '10'
-        }
-
-        const response = yield get(params, 'search')
+        const response = yield get({
+            cors: true,
+            credentials: true,
+            headers: true,
+            method: 'search',
+            params: {
+                term: action.searchText.replace(/ /g, '+').toLowerCase(),
+                entity: 'musicArtist',
+                limit: '10'
+            }
+        // @ts-ignore
+        }).then(res => res.json())
 
         const suggestions = response.results
             // @ts-ignore

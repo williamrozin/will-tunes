@@ -27,6 +27,14 @@ $pause-icon: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMiIgdmlld0JveD0iM
     max-height: 50px;
 }
 
+@mixin coverPicture {
+    background-image: url('https://picsum.photos/1366/768');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 body {
     margin: 0;
     background-color: $white;
@@ -94,13 +102,14 @@ input {
     }
 }
 
+.home-cover-picture { 
+    @include coverPicture();
+    height: 200px;
+}
+
 .cover-picture { 
-    background-image: url('https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg');
+    @include coverPicture();
     height: 300px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .display5 {

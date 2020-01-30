@@ -2,6 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects'
 import actions from '../action-types'
 import { get } from '../api'
 import { TArtist } from '../store/state'
+import { getRandomDate, getResume, getRandomCountry } from '../lib/random'
 
 type TAction = {
     type: keyof actions
@@ -14,12 +15,7 @@ function getArtistInfo(artist: unknown) {
         id: artist.amgArtistId,
         // @ts-ignore
         name: artist.artistName,
-        picture: 'https://cdn3-www.dogtime.com/assets/uploads/2018/10/puppies-cover.jpg',
-        resume: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            + ' Curabitur vitae laoreet orci. Nulla consectetur diam non euismod pulvinar.'
-            + 'Etiam dignissim vulputate arcu, vel feugiat enim iaculis vitae. Mauris ut tempor massa.'
-            + 'Phasellus ullamcorper tempor eros, a euismod arcu. Maecenas vehicula pulvinar vulputate.'
-            + 'Nulla interdum laoreet ornare.',
+        resume: '',
         genre: {
             // @ts-ignore
             id: artist.primaryGenreId,
@@ -27,35 +23,39 @@ function getArtistInfo(artist: unknown) {
             name: artist.primaryGenreName
         },
         bio: {
-            origin: 'Hawaii',
-            birthDate: new Date('1990-05-28')
+            origin: '',
+            birthDate: new Date()
         }
     }
 
     return value
 }
 
-function getAlbumsInfo(albums: unknown) {
+async function getAlbumsInfo(albums: unknown) {
     return Promise
         // @ts-ignore
         .all(albums.map(album =>
-            get({ id: album.collectionId, entity: 'song' })
+            get({
+                method: 'lookup',
+                cors: true,
+                credentials: true,
+                headers: true,
+                params: { id: album.collectionId, entity: 'song' }
+            })
+                // @ts-ignore
+                .then(res => res.json())
                 .then(res => res?.results ?? [])
-                .then(tracks => ({
+                .then(async tracks => ({
                     id: album.collectionId,
                     picture: album.artworkUrl100,
                     title: album.collectionName,
-                    editorsNotes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-                        + ' Curabitur vitae laoreet orci. Nulla consectetur diam non euismod pulvinar.'
-                        + 'Etiam dignissim vulputate arcu, vel feugiat enim iaculis vitae. Mauris ut tempor massa.'
-                        + 'Phasellus ullamcorper tempor eros, a euismod arcu. Maecenas vehicula pulvinar vulputate.'
-                        + 'Nulla interdum laoreet ornare.',
+                    editorsNotes: await getResume(),
                     link: album.collectionViewUrl,
                     songs: tracks
                         // @ts-ignore
                         .filter(track => track.kind === 'song')
                         // @ts-ignore
-                            .map(track => ({
+                        .map(track => ({
                             artistName: track.artistName,
                             duration: track.trackTimeMillis,
                             id: track.trackId,
@@ -69,19 +69,45 @@ function getAlbumsInfo(albums: unknown) {
 
 function* getArtist(action: TAction) {
     try {
-        const response = yield get({
-            amgArtistId: action.id,
-            entity: 'album',
-            limit: '10'
-        })
+        const artistParams = {
+            cors: true,
+            credentials: true,
+            headers: true,
+            method: 'lookup',
+            params: {
+                amgArtistId: action.id,
+                entity: 'album',
+                limit: '10'
+            }
+        }
 
-        const [artist, ...albums] = response.results
 
-        const artistInfo = getArtistInfo(artist)
-        const collection = yield getAlbumsInfo(albums)
+        const response = yield get(artistParams)
+            .then(res => {
+                try {
+                // @ts-ignore
+                    return res.json()
+                } catch (err) {
+                    return null
+                }
+            })
 
-        yield put({ type: actions.SET_ARTIST, value: artistInfo })
-        yield put({ type: actions.SET_ALBUMS, value: collection })
+        if (!response) {
+            const resume = yield getResume()
+            const origin = getRandomCountry()
+            const [artist, ...albums] = response.results
+
+            const artistInfo = {
+                ...getArtistInfo(artist),
+                resume,
+                bio: { origin, birthDate: getRandomDate() }
+            }            
+
+            const collection = yield getAlbumsInfo(albums)
+
+            yield put({ type: actions.SET_ARTIST, value: artistInfo })
+            yield put({ type: actions.SET_ALBUMS, value: collection })
+        }
     } catch (err) {
         console.log(err)
     }

@@ -10,7 +10,7 @@ const Content = styled.div({
     padding: '36px',
     display: 'grid',
     flexDirection: 'column',
-    width: '100%',
+    width: 'calc(100% - 72px)',
     gridGap: '12px',
     textAlign: 'center',
     margin: '0 auto',
@@ -41,17 +41,20 @@ const Home: FC = () => {
 
 
     return (
-        <Content>
-            <div className='display5 primary'>willTunes</div>
-            <input
-                placeholder='Search for an artist'
-                type='search'
-                value={ searchText }
-                className='sticky'
-                onChange={ handleChangeSearchText }
-            />
-            { suggestions.map(renderSuggestion) }
-        </Content>
+        <>
+            <div className='home-cover-picture' />
+            <Content>
+                <div className='display5 primary'>willTunes</div>
+                <input
+                    placeholder='Search for an artist'
+                    type='search'
+                    value={ searchText }
+                    className='sticky'
+                    onChange={ handleChangeSearchText }
+                />
+                { suggestions.map(renderSuggestion) }
+            </Content>
+        </>
     )
 }
 

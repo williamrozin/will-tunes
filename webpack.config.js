@@ -10,7 +10,7 @@ module.exports = {
             { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
             { test: /\.html$/, loader: 'html-loader' },
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
+                test: /\.(gif|png|jpe?g|svg|ico)$/i,
                 use: [
                     'file-loader',
                     {
@@ -25,9 +25,9 @@ module.exports = {
                   'style-loader',
                   'css-loader',
                   'sass-loader',
-                ],
-              }
-        ],
+                ]
+            }
+        ]
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
@@ -41,7 +41,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/assets/index.html',
-            // favicon: './assets/favicon.png'
+            favicon: './src/assets/favicon.ico'
         })
     ],
     devServer: {

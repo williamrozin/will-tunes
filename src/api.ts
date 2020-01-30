@@ -1,31 +1,37 @@
 import { keys } from 'ramda'
 export const ITUNES_URL = 'https://itunes.apple.com'
 
-type TMethod = 'search' | 'lookup'
-
 const queryfy = <T extends object>(params: T) => {
     const objectKeys = keys(params)
 
-    return objectKeys
+    return '?' + objectKeys
         .map(key => [key, params[key]])
         .map(value => value.join('='))
         .join('&')
 }
 
-export const get = async (searchParams: object, method: TMethod = 'lookup') => {
-    const queryParams = queryfy(searchParams)
+type TOptions = {
+    url?: string
+    cors: boolean
+    credentials: boolean
+    headers: boolean
+    params?: object
+    method?: string
+}
 
-    console.log(queryParams)
+export const get = async (options: TOptions) => {
+    const queryParams = options.params ? queryfy(options.params) : ''
+    const url = options.url || ITUNES_URL
+    const method = options.method
+        ? `/${options.method}`
+        : ''
 
-    return fetch(`${ITUNES_URL}/${method}?${queryParams}`, {
+    return fetch(`${url}${method}${queryParams}`, {
         method: 'GET',
-        mode: 'cors',
+        mode: options.cors ? 'cors' : 'no-cors',
         cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-           'Content-Type': 'application/json'
-        }
+        credentials: options.credentials ? 'same-origin' : undefined,
+        headers: options.headers ? { 'Content-Type': 'application/json' } : undefined
     })
-    .then(res => res.json())
-    .catch(err => console.error(err))
+    .catch(err => console.log(err))
 }
