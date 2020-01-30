@@ -50,6 +50,7 @@ const Home: FC = () => {
                     type='search'
                     value={ searchText }
                     className='sticky'
+                    data-testid='search-field'
                     onChange={ handleChangeSearchText }
                 />
                 { suggestions.map(renderSuggestion) }
