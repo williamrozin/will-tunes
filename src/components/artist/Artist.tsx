@@ -5,9 +5,23 @@ import Bio from './bio/Bio'
 import Album from '../album/Album'
 
 type Props = {
+    loading: boolean
     artist: TArtist
     albums: TAlbum[]
 }
+
+const LoadingWrapper = styled.div({
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    color: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#00000080'
+})
 
 const Container = styled.div({
     display: 'flex',
@@ -38,19 +52,27 @@ const Artist: FC<Props> = props => {
         return null
     }
 
+    const renderLoading = () =>
+        <LoadingWrapper>
+            <div className='display3'>Loading...</div>
+        </LoadingWrapper>
+
     return (
-        <Container>
-            <Bio
-                name={ props.artist.name }
-                resume={ props.artist.resume }
-                link={ props.artist.link }
-                bio={ props.artist.bio }
-                genre={ props.artist.genre }
-            />
-            <Albums>
-                { renderAlbums() }
-            </Albums>
-        </Container>
+        <>
+            { props.loading && renderLoading() }
+            <Container>
+                <Bio
+                    name={ props.artist.name }
+                    resume={ props.artist.resume }
+                    link={ props.artist.link }
+                    bio={ props.artist.bio }
+                    genre={ props.artist.genre }
+                />
+                <Albums>
+                    { renderAlbums() }
+                </Albums>
+            </Container>
+        </>
     )
 }
 

@@ -18,12 +18,9 @@ const ArtistContainer: FC<IProps> = () => {
         dispatch({ type: actions.GET_ARTIST_DETAILS, id })
     }, [id])
 
-    if (loading) {
-        return <div className='display3'>Loading...</div>
-    }
-
     return (
         <Artist
+            loading={ loading }
             artist={ artist }
             albums={ albums }
         />
