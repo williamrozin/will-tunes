@@ -85,14 +85,14 @@ function* getArtist(action: TAction) {
         const response = yield get(artistParams)
             .then(res => {
                 try {
-                // @ts-ignore
+                    // @ts-ignore
                     return res.json()
                 } catch (err) {
                     return null
                 }
             })
 
-        if (!response) {
+        if (response) {
             const resume = yield getResume()
             const origin = getRandomCountry()
             const [artist, ...albums] = response.results

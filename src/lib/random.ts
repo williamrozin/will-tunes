@@ -9,7 +9,12 @@ export const getRandomDate = () => {
 
 export const getResume = async () => {
     const quotes: string[] = []
-    const quoteParams = { url: 'https://api.kanye.rest/' }
+    const quoteParams = {
+        url: 'https://api.kanye.rest/',
+        cors: true,
+        credentials: true,
+        headers: true
+    }
 
     for (let i = 0; i <= 5; i++) {
         // @ts-ignore
