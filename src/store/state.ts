@@ -4,6 +4,11 @@ export type TState = {
     artist: TArtist
     albums: TAlbum[]
     search: TSearch
+    home: THome
+}
+
+export type THome = {
+    loading: boolean
 }
 
 export type TArtist = {
@@ -75,8 +80,13 @@ export const search: TSearch = {
     suggestions: []
 }
 
+export const home: THome = {
+    loading: false
+}
+
 export default {
     artist,
     albums,
-    search
+    search,
+    home
 }

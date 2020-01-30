@@ -19,21 +19,22 @@ function* getSuggestions(action: TAction) {
                 entity: 'musicArtist',
                 limit: '10'
             }
-        // @ts-ignore
-        }).then(res => res.json())
+        }).then(res => res instanceof Response ? res.json() : null)
 
-        const suggestions = response.results
-            // @ts-ignore
-            .filter(it => !!it.amgArtistId)
-            // @ts-ignore
-            .map(result => ({
-                id: result.amgArtistId,
-                name: result.artistName,
-                genre: {
-                    id: result.primaryGenreId,
-                    name: result.primaryGenreName
-                }
-            })) || []
+        const suggestions = response && response.results
+                ? response.results
+                    // @ts-ignore
+                    .filter(it => !!it.amgArtistId)
+                    // @ts-ignore
+                    .map(result => ({
+                        id: result.amgArtistId,
+                        name: result.artistName,
+                        genre: {
+                            id: result.primaryGenreId,
+                            name: result.primaryGenreName
+                        }
+                    }))
+                : []
 
         yield put({ type: actions.SET_SUGGESTIONS, suggestions })
     } catch (err) {

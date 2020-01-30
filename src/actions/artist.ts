@@ -1,8 +1,26 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import actions from '../action-types'
 import { get } from '../api'
-import { TArtist } from '../store/state'
+import { TArtist, TAlbum } from '../store/state'
 import { getRandomDate, getResume, getRandomCountry } from '../lib/random'
+
+type TAlbumLookup = {
+    collectionId: string
+    artworkUrl100: string
+    collectionName: string
+    collectionViewUrl: string
+}
+
+type TTrackLookup = {
+    artistName: string
+    trackTimeMillis: string
+    trackId: string
+    artworkUrl100: string
+    trackName: string
+    previewUrl: string
+    kind: string
+}
+
 
 type TAction = {
     type: keyof actions
@@ -31,43 +49,50 @@ function getArtistInfo(artist: unknown) {
     return value
 }
 
-async function getAlbumsInfo(albums: unknown) {
-    return Promise
-        // @ts-ignore
-        .all(albums.map(album =>
-            get({
-                method: 'lookup',
-                cors: true,
-                credentials: true,
-                headers: true,
-                params: { id: album.collectionId, entity: 'song' }
-            })
-                // @ts-ignore
-                .then(res => res.json())
-                .then(res => res?.results ?? [])
-                .then(async tracks => ({
-                    id: album.collectionId,
-                    picture: album.artworkUrl100,
-                    title: album.collectionName,
-                    editorsNotes: await getResume(),
-                    link: album.collectionViewUrl,
-                    songs: tracks
-                        // @ts-ignore
-                        .filter(track => track.kind === 'song')
-                        // @ts-ignore
-                        .map(track => ({
-                            artistName: track.artistName,
-                            duration: track.trackTimeMillis,
-                            id: track.trackId,
-                            picture: track.artworkUrl100,
-                            title: track.trackName,
-                            previewUrl: track.previewUrl
-                        }))
-                }))
-        ))
-}
+async function getAlbumsInfo(albums: TAlbumLookup[]) {
+    const newAlbums: TAlbum[] = []
+    const resume = await getResume()
+
+    for (const album of albums) {
+        const collection = await get({
+            method: 'lookup',
+            cors: true,
+            credentials: true,
+            headers: true,
+            params: { id: album.collectionId, entity: 'song' }
+        })
+            .then(res => res instanceof Response ? res.json() : null)
+            .then(res => res?.results ?? [])
+            .then((tracks: TTrackLookup[]) => ({
+                id: album.collectionId,
+                picture: album.artworkUrl100,
+                title: album.collectionName,
+                editorsNotes: resume || '',
+                link: album.collectionViewUrl,
+                songs: tracks
+                    .filter(track => track.kind === 'song')
+                    .map(track => ({
+                        artistName: track.artistName,
+                        duration: track.trackTimeMillis,
+                        id: track.trackId,
+                        picture: track.artworkUrl100,
+                        title: track.trackName,
+                        previewUrl: track.previewUrl
+                    }))
+            }))
+            .catch(() => null)
+
+            if (collection) {
+                newAlbums.push(collection)
+            }
+        }
+
+        return newAlbums
+    }
 
 function* getArtist(action: TAction) {
+    yield put({ type: actions.SET_LOADING })
+
     try {
         const artistParams = {
             cors: true,
@@ -83,14 +108,7 @@ function* getArtist(action: TAction) {
 
 
         const response = yield get(artistParams)
-            .then(res => {
-                try {
-                    // @ts-ignore
-                    return res.json()
-                } catch (err) {
-                    return null
-                }
-            })
+            .then(res => res instanceof Response ? res.json() : null)
 
         if (response) {
             const resume = yield getResume()
@@ -111,6 +129,8 @@ function* getArtist(action: TAction) {
     } catch (err) {
         console.log(err)
     }
+
+    yield put({ type: actions.UNSET_LOADING })
 }
 
 function* artistWatcher() {

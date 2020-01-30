@@ -17,8 +17,8 @@ export const getResume = async () => {
     }
 
     for (let i = 0; i <= 5; i++) {
-        // @ts-ignore
-        const { quote } =  await get(quoteParams).then(res => res.json())
+        const { quote } =  await get(quoteParams)
+            .then(res => res instanceof Response ? res.json() : null)
         quotes.push(quote)
     }
 

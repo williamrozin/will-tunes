@@ -26,10 +26,16 @@ export const get = async (options: TOptions) => {
         ? `/${options.method}`
         : ''
 
-    return fetch(`${url}${method}${queryParams}`, {
+    const path = `${url}${method}${queryParams}`
+
+    console.log(path)
+
+    return fetch(path, {
         method: 'GET',
         mode: options.cors ? 'cors' : 'no-cors',
         cache: 'no-cache',
+        referrerPolicy: 'strict-origin-when-cross-origin',
+        referrer: 'https://will-tunes.now.sh',
         credentials: options.credentials ? 'same-origin' : undefined,
         headers: options.headers ? { 'Content-Type': 'application/json' } : undefined
     })
