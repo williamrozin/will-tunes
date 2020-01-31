@@ -27,19 +27,19 @@ function* getSuggestions(action: TAction) {
             }).then(getOrElse)
 
             const suggestions = response && response.results
-                    ? response.results
-                        // @ts-ignore
-                        .filter(it => !!it.amgArtistId)
-                        // @ts-ignore
-                        .map(result => ({
-                            id: result.amgArtistId,
-                            name: result.artistName,
-                            genre: {
-                                id: result.primaryGenreId,
-                                name: result.primaryGenreName
-                            }
-                        }))
-                    : []
+                ? response.results
+                    // @ts-ignore
+                    .filter(it => !!it.amgArtistId)
+                    // @ts-ignore
+                    .map(result => ({
+                        id: result.amgArtistId,
+                        name: result.artistName,
+                        genre: {
+                            id: result.primaryGenreId,
+                            name: result.primaryGenreName
+                        }
+                    }))
+                : []
 
             yield put({ type: actions.SET_SUGGESTIONS, suggestions })
         } catch (err) {

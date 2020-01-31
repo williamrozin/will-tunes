@@ -3,6 +3,7 @@ export type TState = {
     albums: TAlbum[]
     search: TSearch
     home: THome
+    featured: TFeatured[]
 }
 
 export type THome = {
@@ -57,7 +58,8 @@ export type TSuggestion = {
     genre: TGenre
 }
 
-export type TRelatedArtist = {
+export type TFeatured = {
+    id: string
     name: string
     genre: TGenre
 }
@@ -89,9 +91,12 @@ export const home: THome = {
     loadingSuggestions: false
 }
 
+export const featured: TFeatured[] = []
+
 export default {
     artist,
     albums,
     search,
-    home
+    home,
+    featured
 }

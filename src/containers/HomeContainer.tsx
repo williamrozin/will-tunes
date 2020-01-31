@@ -11,7 +11,8 @@ const HomeContainer: FC<IProps> = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch({ type: actions.SET_ARTIST, value: artist })        
+        dispatch({ type: actions.SET_ARTIST, value: artist })
+        dispatch({ type: actions.SET_FEATURED, featured: [] })
     }, [])
 
     return <Home />

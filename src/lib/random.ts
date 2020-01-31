@@ -1,5 +1,12 @@
 import { get, getOrElse } from "../api"
 import countriesList from "./countries"
+import randomSyllable from 'random-syllable'
+
+export const getRandomLetter = () => {
+    const syllable = randomSyllable({ length: 3 })
+    
+    return syllable
+}
 
 export const getRandomDate = () => {
     const start = new Date('1960-01-12')

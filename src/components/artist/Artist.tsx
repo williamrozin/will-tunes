@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react'
-import { TArtist, TAlbum } from '../../store/state'
+import { TArtist, TAlbum, TFeatured } from '../../store/state'
 import styled from 'styled-components'
 import Bio from './bio/Bio'
 import Album from '../album/Album'
@@ -9,6 +9,7 @@ type Props = {
     loading: boolean
     artist: TArtist
     albums: TAlbum[]
+    featured: TFeatured[]
 }
 
 const Container = styled.div`
@@ -52,21 +53,24 @@ const Artist: FC<Props> = props => {
     }, [props.albums])
 
 
-    const renderFeatured = () =>
-        <Content>
-            <Subtitle className='display2'>Featured Artists</Subtitle>
-            <Featured>
-                <Related
-                    related={ {
-                        name: 'Bee Gees',
-                        genre: {
-                            id: '0',
-                            name: 'Pop'
-                        }
-                    } }
-                />
-            </Featured>
-        </Content>
+    const renderFeatured = () => {
+        if (!props.featured.length) {
+            return null
+        }
+
+        return (
+            <Content>
+                <Subtitle className='display2'>Featured Artists</Subtitle>
+                <Featured>
+                    {
+                        props
+                            .featured
+                            .map((it, index) => <Related index={ index } related={ it } />)
+                    }
+                </Featured>
+            </Content>
+        )
+    }
 
     return (
         <>

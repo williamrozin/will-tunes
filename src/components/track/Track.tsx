@@ -65,6 +65,8 @@ const Track: FC<Props> = props => {
 
     const handleTogglePlaying = () => {
         if (error) {
+            alert('Your system may have missing codecs (for MP4) or the service isn\'t available right now.')
+
             return
         }
 
