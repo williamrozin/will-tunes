@@ -20,7 +20,7 @@ const ArtistContainer: FC<IProps> = () => {
 
     return (
         <Artist
-            loading={ loading }
+            loading={ loading  }
             artist={ artist }
             albums={ albums }
         />

@@ -14,6 +14,10 @@ export default function homeReducer(state: PartialState = home, action: IAction)
             return { loadingArtist: true }
         case actions.UNSET_LOADING_ARTIST:
             return { loadingArtist: false }
+        case actions.SET_LOADING_SUGGESTION:
+            return { loadingSuggestions: true }
+        case actions.UNSET_LOADING_SUGGESTION:
+            return { loadingSuggestions: false }            
         default:
             return state
     }

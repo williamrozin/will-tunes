@@ -8,38 +8,46 @@ type TAction = {
 }
 
 function* getSuggestions(action: TAction) {
-    try {
-        const response = yield get({
-            cors: true,
-            credentials: true,
-            headers: true,
-            method: 'search',
-            params: {
-                term: action.searchText.replace(/ /g, '+').toLowerCase(),
-                entity: 'musicArtist',
-                limit: '10'
-            }
-        }).then(getOrElse)
+    yield put({ type: actions.SET_LOADING_SUGGESTION })
 
-        const suggestions = response && response.results
-                ? response.results
-                    // @ts-ignore
-                    .filter(it => !!it.amgArtistId)
-                    // @ts-ignore
-                    .map(result => ({
-                        id: result.amgArtistId,
-                        name: result.artistName,
-                        genre: {
-                            id: result.primaryGenreId,
-                            name: result.primaryGenreName
-                        }
-                    }))
-                : []
+    if (!action.searchText) {
+        yield put({ type: actions.SET_SUGGESTIONS, suggestions: [] })
+    } else {
+        try {
+            const response = yield get({
+                cors: true,
+                credentials: true,
+                headers: true,
+                method: 'search',
+                params: {
+                    term: action.searchText.replace(/ /g, '+').toLowerCase(),
+                    entity: 'musicArtist',
+                    limit: '10'
+                }
+            }).then(getOrElse)
 
-        yield put({ type: actions.SET_SUGGESTIONS, suggestions })
-    } catch (err) {
-        console.log(err)
+            const suggestions = response && response.results
+                    ? response.results
+                        // @ts-ignore
+                        .filter(it => !!it.amgArtistId)
+                        // @ts-ignore
+                        .map(result => ({
+                            id: result.amgArtistId,
+                            name: result.artistName,
+                            genre: {
+                                id: result.primaryGenreId,
+                                name: result.primaryGenreName
+                            }
+                        }))
+                    : []
+
+            yield put({ type: actions.SET_SUGGESTIONS, suggestions })
+        } catch (err) {
+            console.log(err)
+        }           
     }
+
+    yield put({ type: actions.UNSET_LOADING_SUGGESTION })
 }
 
 function* searchWatcher() {

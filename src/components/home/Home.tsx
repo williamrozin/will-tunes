@@ -2,9 +2,10 @@ import React, { FC, useEffect, useState, ChangeEvent } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../action-types'
-import { TSearch, TState, TSuggestion } from '../../store/state'
+import { TSearch, TState, TSuggestion, THome } from '../../store/state'
 import Suggestion from '../suggestion/Suggestion'
 import { useDebounce } from '../../hooks/useDebounce'
+import { times } from 'ramda'
 
 const Content = styled.div`
     padding: 36px;
@@ -19,11 +20,13 @@ const Content = styled.div`
 
 const Home: FC = () => {
     const suggestions = useSelector<TState, TSearch['suggestions']>(state => state.search.suggestions)
+    const loadingSuggestions = useSelector<TState, THome['loadingSuggestions']>(state => state.home.loadingSuggestions)
     const initialSearchText = useSelector<TState, TSearch['searchText']>(state => state.search.searchText)
     const [searchText, setSearchText] = useState(initialSearchText || '')
     const dispatch = useDispatch()
     const [debouncedSearch] = useDebounce(searchText)
 
+    const loading = loadingSuggestions && !!initialSearchText
 
     useEffect(() => {
         dispatch({ type: actions.SET_SEARCH_TEXT, searchText: debouncedSearch })
@@ -33,12 +36,12 @@ const Home: FC = () => {
         setSearchText(event.target.value)
     }
 
-    const renderSuggestion = (suggestion: TSuggestion) =>
+    const renderSuggestion = (suggestion: TSuggestion | number) =>
         <Suggestion
-            key={ suggestion.id }
-            suggestion={ suggestion }
+            loading={ loading }
+            key={ typeof suggestion === 'number' ? suggestion : suggestion.id }
+            suggestion={ typeof suggestion === 'number' ? undefined : suggestion }
         />
-
 
     return (
         <>
@@ -53,7 +56,7 @@ const Home: FC = () => {
                     data-testid='search-field'
                     onChange={ handleChangeSearchText }
                 />
-                { suggestions.map(renderSuggestion) }
+                { loading ? times(renderSuggestion, 3) : suggestions.map(renderSuggestion) }
             </Content>
         </>
     )
