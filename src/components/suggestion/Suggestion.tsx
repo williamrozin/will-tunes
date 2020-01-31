@@ -7,11 +7,11 @@ type Props = {
     suggestion: TSuggestion
 }
 
-const Content = styled.div({
-    display: 'grid',
-    gridGap: '6px',
-    textAlign: 'left'
-})
+const Content = styled.div`
+    display: grid;
+    grid-gap: 6px;
+    text-align: left;
+`
 
 const Suggestion: FC<Props> = props => {
     const { push } = useHistory()

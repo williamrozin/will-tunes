@@ -6,14 +6,14 @@ type Props = {
     related: TRelatedArtist
 }
 
-const Content = styled.div({
-    display: 'grid',
-    gridTemplateRows: 'auto 1fr 1fr',
-    justifyContent: 'center',
-    gridGap: '4px',
-    margin: '36px 0',
-    textAlign: 'center'
-})
+const Content = styled.div`
+    display: grid;
+    grid-templateRows: auto 1fr 1fr;
+    justify-content: center;
+    grid-gap: 4px;
+    margin: 36px 0;
+    text-align: center;
+`
 
 const Related: FC<Props> = props => {
     return (

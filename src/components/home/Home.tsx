@@ -6,16 +6,16 @@ import { TSearch, TState, TSuggestion } from '../../store/state'
 import Suggestion from '../suggestion/Suggestion'
 import { useDebounce } from '../../hooks/useDebounce'
 
-const Content = styled.div({
-    padding: '36px',
-    display: 'grid',
-    flexDirection: 'column',
-    width: 'calc(100% - 72px)',
-    gridGap: '12px',
-    textAlign: 'center',
-    margin: '0 auto',
-    maxWidth: '720px'
-})
+const Content = styled.div`
+    padding: 36px;
+    display: grid;
+    flex-direction: column;
+    width: calc(100% - 72px);
+    grid-gap: 12px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 720px;
+`
 
 const Home: FC = () => {
     const suggestions = useSelector<TState, TSearch['suggestions']>(state => state.search.suggestions)

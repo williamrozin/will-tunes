@@ -5,14 +5,14 @@ type Props = {
     text?: string
 }
 
-const Content = styled.div({
-    display: 'grid',
-    flex: 1,
-    padding: '0 0 12px 0',
-    gridGap: '6px',
-    gridArea: 'notes',
-    flexDirection: 'column'
-})
+const Content = styled.div`
+    display: grid;
+    flex: 1;
+    padding: 0 0 12px 0;
+    grid-gap: 6px;
+    grid-area: notes;
+    flex-direction: column;
+`
 
 
 const EditorsNotes: FC<Props> = props => {

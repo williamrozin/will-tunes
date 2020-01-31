@@ -8,13 +8,13 @@ type Props = {
     album: TAlbum
 }
 
-const Content = styled.div({
-    display: 'flex',
-    flex: 1,
-    marginBottom: '24px',
-    padding: '0 24px',
-    flexDirection: 'column'
-})
+const Content = styled.div`
+    display: flex;
+    flex: 1;
+    margin-bottom: 24px;
+    padding: 0 24px;
+    flex-direction: column;
+`
 
 const AlbumDetails = styled.div`
     display: grid;
@@ -39,21 +39,21 @@ const AlbumDetails = styled.div`
     }
 `
 
-const Bold = styled.b({
-    margin: '0 4px'
-})
+const Bold = styled.b`
+    margin: 0 4px;
+`
 
-const Link = styled.a({
-    gridArea: 'link'
-})
+const Link = styled.a`
+    grid-area: link;
+`
 
-const Cover = styled.img({
-    gridArea: 'picture'
-})
+const Cover = styled.img`
+    grid-area: picture;
+`
 
-const Title = styled.div({
-    gridArea: 'title'
-})
+const Title = styled.div`
+    grid-area: title;
+`
 
 const Tracks = styled.div`
     grid-area: tracks;

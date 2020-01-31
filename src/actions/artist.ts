@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import actions from '../action-types'
-import { get } from '../api'
+import { get, getOrElse } from '../api'
 import { TArtist, TAlbum } from '../store/state'
 import { getRandomDate, getResume, getRandomCountry } from '../lib/random'
 
@@ -61,7 +61,7 @@ async function getAlbumsInfo(albums: TAlbumLookup[]) {
             headers: true,
             params: { id: album.collectionId, entity: 'song' }
         })
-            .then(res => res instanceof Response ? res.json() : null)
+            .then(getOrElse)
             .then(res => res?.results ?? [])
             .then((tracks: TTrackLookup[]) => ({
                 id: album.collectionId,
@@ -107,8 +107,7 @@ function* getArtist(action: TAction) {
         }
 
 
-        const response = yield get(artistParams)
-            .then(res => res instanceof Response ? res.json() : null)
+        const response = yield get(artistParams).then(getOrElse)
 
         if (response) {
             const resume = yield getResume()

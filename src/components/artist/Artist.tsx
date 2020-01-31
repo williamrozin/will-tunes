@@ -11,28 +11,28 @@ type Props = {
     albums: TAlbum[]
 }
 
-const LoadingWrapper = styled.div({
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    display: 'flex',
-    color: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#00000080'
-})
+const LoadingWrapper = styled.div`
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000080;
+`
 
-const Container = styled.div({
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column'
-})
+const Container = styled.div`
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+`
 
-const Subtitle = styled.div({
-    marginTop: '24px'
-})
+const Subtitle = styled.div`
+    margin-top: 24px;
+`
 
 const Content = styled.div`
     flex: 1;

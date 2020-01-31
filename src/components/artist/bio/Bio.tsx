@@ -12,11 +12,11 @@ type Props = {
     genre: TArtist['genre']
 }
 
-const Container = styled.div({
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column'
-})
+const Container = styled.div`
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+`
 
 const Wrapper = styled.div`
     padding: 36px;
@@ -45,23 +45,25 @@ const Content = styled.div`
     }
 `
 
-const Resume = styled.div({
-    display: 'grid',
-    gridArea: 'resume',
-    gridGap: '24px',
-    flex: 1
-})
+const Resume = styled.div`
+    display: grid;
+    grid-area: resume;
+    grid-gap: 24px;
+    flex: 1;
+    align-items: center;
+    grid-template-rows: 1fr auto 1fr;
+`
 
-const Bold = styled.b({
-    margin: '0 4px'
-})
+const Bold = styled.b`
+    margin: 0 4px;
+`
 
-const Details = styled.div({
-    display: 'flex',
-    gridArea: 'details',
-    flex: 1,
-    flexDirection: 'column'
-})
+const Details = styled.div`
+    display: flex;
+    grid-area: details;
+    flex: 1;
+    flex-direction: column;
+`
 
 const Bio: FC<Props> = props => {
     return (

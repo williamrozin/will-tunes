@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import actions from '../action-types'
-import { get } from '../api'
+import { get, getOrElse } from '../api'
 
 type TAction = {
     type: keyof actions
@@ -19,7 +19,7 @@ function* getSuggestions(action: TAction) {
                 entity: 'musicArtist',
                 limit: '10'
             }
-        }).then(res => res instanceof Response ? res.json() : null)
+        }).then(getOrElse)
 
         const suggestions = response && response.results
                 ? response.results

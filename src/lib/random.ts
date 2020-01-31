@@ -1,4 +1,4 @@
-import { get } from "../api"
+import { get, getOrElse } from "../api"
 import countriesList from "./countries"
 
 export const getRandomDate = () => {
@@ -16,9 +16,8 @@ export const getResume = async () => {
         headers: true
     }
 
-    for (let i = 0; i <= 5; i++) {
-        const { quote } =  await get(quoteParams)
-            .then(res => res instanceof Response ? res.json() : null)
+    for (let i = 0; i <= 10; i++) {
+        const { quote } = await get(quoteParams).then(getOrElse)
         quotes.push(quote)
     }
 

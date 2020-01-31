@@ -8,46 +8,46 @@ type Props = {
     track: TSong
 }
 
-const Wrapper = styled.div({
-    display: 'flex',
-    flex: 1,
-    cursor: 'pointer'
-})
+const Wrapper = styled.div`
+    display: flex;
+    flex: 1;
+    cursor: pointer;
+`
 
-const Content = styled.div({
-    display: 'grid',
-    gridGap: '4px',
-    flex: 1,
-    flexDirection: 'column',
-    gridTemplateColumns: 'auto 1fr'
-})
+const Content = styled.div`
+    display: grid;
+    grid-gap: 4px;
+    flex: 1;
+    flex-direction: column;
+    grid-template-columns: auto 1fr;
+`
 
-const Details = styled.div({
-    padding: '6px 0',
-    display: 'grid',
-    alignItems: 'center',
-    gridTemplateColumns: '1fr auto',
-    gridTemplateAreas: '"title duration" "artist duration"'
-})
+const Details = styled.div`
+    padding: 6px 0;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "title duration" "artist duration";
+`
 
-const Duration = styled.div({
-    gridArea: 'duration',
-    paddingLeft: 12,
-    gridRow: '1 / span 2'
-})
+const Duration = styled.div`
+    grid-area: duration;
+    padding-left: 12px;
+    grid-row: 1 / span 2;
+`
 
-const Line = styled.hr({
-    gridColumn: 2,
-    margin: 0
-})
+const Line = styled.hr`
+    grid-column: 2;
+    margin: 0;
+`
 
-const Audio = styled.audio({
-    display: 'none'
-})
+const Audio = styled.audio`
+    display: none;
+`
 
-const Images = styled.div({
-    position: 'relative'
-})
+const Images = styled.div`
+    position: relative;
+`
 
 
 const toHumanDuration = (milliseconds: number) => {

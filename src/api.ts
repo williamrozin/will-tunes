@@ -19,6 +19,8 @@ type TOptions = {
     method?: string
 }
 
+export const getOrElse = (res: Response | void) => res instanceof Response ? res.json() : null
+
 export const get = async (options: TOptions) => {
     const queryParams = options.params ? queryfy(options.params) : ''
     const url = options.url || ITUNES_URL

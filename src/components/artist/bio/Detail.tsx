@@ -6,9 +6,9 @@ type Props = {
     subtitle: string
 }
 
-const Content = styled.div({
-    margin: '6 0 12px 0'
-})
+const Content = styled.div`
+    margin: 6px 0 12px 0;
+`
 
 const Detail: FC<Props> = props => {
     return (
