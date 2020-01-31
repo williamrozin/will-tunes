@@ -18,15 +18,17 @@ const Content = styled.div`
     margin: 36px 0;
     text-align: center;
     cursor: pointer;
-    transition: all ease-in-out 200ms;
 
     &:hover {
         .related-artist {
             border-color: #bd5171;
             border-width: 2px;
+            opacity: 0.75;
+            transition: all ease-in-out 200ms;
         }
 
         .body2 {
+            transition: all ease-in-out 200ms;
             color: #bd5171;
         }
     }
