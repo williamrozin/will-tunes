@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import Skeleton from 'react-loading-skeleton'
 
 type Props = {
     title: string
+    loading: boolean
     subtitle: string
 }
 
@@ -15,11 +17,11 @@ const Detail: FC<Props> = props => {
         <>
             <hr className='divisor' />
             <div className='subheading'>
-                { props.title }
+                { props.loading ? <Skeleton width='172px' /> : props.title }
             </div>
             <Content>
                 <div className='body2'>
-                    { props.subtitle }
+                    { props.loading ? <Skeleton width='128px' /> : props.subtitle }
                 </div>
             </Content>
         </>

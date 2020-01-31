@@ -91,7 +91,7 @@ async function getAlbumsInfo(albums: TAlbumLookup[]) {
     }
 
 function* getArtist(action: TAction) {
-    yield put({ type: actions.SET_LOADING })
+    yield put({ type: actions.SET_LOADING_ARTIST })
 
     try {
         const artistParams = {
@@ -129,7 +129,7 @@ function* getArtist(action: TAction) {
         console.log(err)
     }
 
-    yield put({ type: actions.UNSET_LOADING })
+    yield put({ type: actions.UNSET_LOADING_ARTIST })
 }
 
 function* artistWatcher() {

@@ -6,7 +6,7 @@ export type TState = {
 }
 
 export type THome = {
-    loading: boolean
+    loadingArtist: boolean
 }
 
 export type TArtist = {
@@ -90,7 +90,7 @@ export const search: TSearch = {
 }
 
 export const home: THome = {
-    loading: false
+    loadingArtist: true
 }
 
 export default {

@@ -11,19 +11,6 @@ type Props = {
     albums: TAlbum[]
 }
 
-const LoadingWrapper = styled.div`
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    color: #FFFFFF;
-    justify-content: center;
-    align-items: center;
-    background-color: #00000080;
-`
-
 const Container = styled.div`
     display: flex;
     flex: 1;
@@ -31,7 +18,7 @@ const Container = styled.div`
 `
 
 const Subtitle = styled.div`
-    margin-top: 24px;
+    margin: 24px 24px 0 24px;
 `
 
 const Content = styled.div`
@@ -44,7 +31,12 @@ const Content = styled.div`
 const Featured = styled.div`
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    margin: 0 24px;
+    grid-template-columns: repeat(4,1fr);
+
+    @media (max-width: 720px) {
+        grid-template-columns: repeat(2,1fr);
+    }
 `
 
 const Artist: FC<Props> = props => {
@@ -59,20 +51,28 @@ const Artist: FC<Props> = props => {
         })
     }, [props.albums])
 
-    if (!props.artist.id) {
-        return null
-    }
 
-    const renderLoading = () =>
-        <LoadingWrapper>
-            <div className='display3'>Loading...</div>
-        </LoadingWrapper>
+    const renderFeatured = () =>
+        <Content>
+            <Subtitle className='display2'>Featured Artists</Subtitle>
+            <Featured>
+                <Related
+                    related={ {
+                        name: 'Bee Gees',
+                        genre: {
+                            id: '0',
+                            name: 'Pop'
+                        }
+                    } }
+                />
+            </Featured>
+        </Content>
 
     return (
         <>
-            { props.loading && renderLoading() }
             <Container>
                 <Bio
+                    loading={ props.loading }
                     name={ props.artist.name }
                     resume={ props.artist.resume }
                     link={ props.artist.link }
@@ -80,22 +80,9 @@ const Artist: FC<Props> = props => {
                     genre={ props.artist.genre }
                 />
                 <Content>
-                    { renderAlbums() }
+                    { props.loading ? null : renderAlbums() }
                 </Content>
-                <Content>
-                    <Subtitle className='display2'>Featured Artists</Subtitle>
-                    <Featured>
-                        <Related
-                            related={ {
-                                name: 'Bee Gees',
-                                genre: {
-                                    id: '0',
-                                    name: 'Pop'
-                                }
-                            } }
-                        />
-                    </Featured>
-                </Content>
+                { props.loading ? null : renderFeatured() }
             </Container>
         </>
     )

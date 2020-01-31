@@ -12,7 +12,7 @@ const ArtistContainer: FC<IProps> = () => {
     const dispatch = useDispatch()
     const artist = useSelector<TState, TArtist>(state => state.artist)
     const albums = useSelector<TState, TAlbum[]>(state => state.albums)
-    const loading = useSelector<TState, THome['loading']>(state => state.home.loading)
+    const loading = useSelector<TState, THome['loadingArtist']>(state => state.home.loadingArtist)
 
     useEffect(() => {
         dispatch({ type: actions.GET_ARTIST_DETAILS, id })

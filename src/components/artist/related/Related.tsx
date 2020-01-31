@@ -8,7 +8,7 @@ type Props = {
 
 const Content = styled.div`
     display: grid;
-    grid-templateRows: auto 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
     justify-content: center;
     grid-gap: 4px;
     margin: 36px 0;

@@ -238,8 +238,13 @@ div.track-details:hover {
 }
 
 img.related-artist {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     border: 2px solid $text;
     border-radius: 50%;
+
+    @media (max-width: 720px) {
+        width: 150px;
+        height: 150px;
+    }
 }

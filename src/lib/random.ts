@@ -21,7 +21,7 @@ export const getResume = async () => {
         quotes.push(quote)
     }
 
-    return quotes.join(' ')
+    return quotes.join('. ').replace(/\.\./g, '.')
 }
 
 export const getRandomCountry = () => {
