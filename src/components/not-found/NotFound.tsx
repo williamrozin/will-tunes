@@ -9,7 +9,7 @@ const Content = styled.div`
 `
 
 const NotFound: FC = () =>
-    <>
+    <div data-testid='not-found'>
         <div className='home-cover-picture' />
         <Content>
             <div className='display4' style={ { padding: '48px 0 24px' } }>
@@ -25,6 +25,6 @@ const NotFound: FC = () =>
                 }
             </div>
         </Content>
-    </>
+    </div>
 
 export default NotFound

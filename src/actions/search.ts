@@ -3,11 +3,11 @@ import actions from '../action-types'
 import { get, getOrElse } from '../api'
 
 type TAction = {
-    type: keyof actions
+    type: actions
     searchText: string
 }
 
-function* getSuggestions(action: TAction) {
+export function* getSuggestions(action: TAction) {
     yield put({ type: actions.SET_LOADING_SUGGESTION })
 
     if (!action.searchText) {

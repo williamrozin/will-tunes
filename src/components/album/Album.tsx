@@ -73,7 +73,7 @@ const Album: FC<Props> = props => {
         />
 
     return (
-        <Content>
+        <Content data-testid='album-content'>
             <AlbumDetails>
                 <Cover className='album-cover' src={ props.album.picture } />
                 <Title className='display2'>{ props.album.title }</Title>

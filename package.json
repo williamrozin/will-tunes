@@ -49,6 +49,7 @@
     "isomorphic-fetch": "2.2.1",
     "jest": "25.1.0",
     "node-sass": "4.13.1",
+    "redux-saga-testing": "2.0.0",
     "sass-loader": "8.0.2",
     "source-map-loader": "0.2.4",
     "style-loader": "1.1.3",

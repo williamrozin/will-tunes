@@ -7,6 +7,7 @@
         "esModuleInterop": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
+        "keyofStringsOnly": true,
         "skipLibCheck": true,
         "target": "es5",
         "jsx": "react",

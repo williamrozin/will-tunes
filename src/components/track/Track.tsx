@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState } from 'react'
 import { TSong } from '../../store/state'
 import styled from 'styled-components'
-import { addMilliseconds } from 'date-fns/esm'
+import { addMilliseconds } from 'date-fns'
 import { format } from 'date-fns'
 
 type Props = {
