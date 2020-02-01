@@ -66,13 +66,23 @@ These fake data does not have any relation with the real artist or album.
 
 ![](https://i.imgur.com/guYAcff.png)
 
+---
+
 ![](https://i.imgur.com/5J9WJ7Q.png)
+
+---
 
 ![](https://i.imgur.com/qCCMC95.png)
 
+---
+
 ![](https://i.imgur.com/5GyqZZQ.png)
 
+---
+
 ![](https://i.imgur.com/HeJz8pf.png)
+
+---
 
 ![](https://i.imgur.com/EBe4R7W.png)
 
