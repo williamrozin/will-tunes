@@ -1,13 +1,11 @@
 import React, { FC, useEffect } from 'react'
 import Artist from '../components/artist/Artist'
-import { RouteComponentProps, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { TState, TArtist, TAlbum, THome, TFeatured } from '../store/state'
 import actions from '../action-types'
 
-export type IProps = RouteComponentProps<{}>
-
-const ArtistContainer: FC<IProps> = () => {
+const ArtistContainer: FC = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const artist = useSelector<TState, TArtist>(state => state.artist)

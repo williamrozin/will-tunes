@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react'
+import React, { FC, useRef, useState, useCallback } from 'react'
 import { TSong } from '../../store/state'
 import styled from 'styled-components'
 import { addMilliseconds } from 'date-fns'
@@ -79,16 +79,19 @@ const Track: FC<Props> = props => {
         setPlaying(value => !value)
     }
 
-    const handleSetError = () => {
+    const handleSetError = useCallback(() => {
         setError(true)
-    }
+    }, [])
 
-    const renderAudio = () =>
-        <Audio
-            ref={ audioRef }
-            onError={ handleSetError }>
-            <source src={ props.track.previewUrl } type='audio/x-m4a' />
-        </Audio>
+    const renderAudio = () => {
+        return (
+            <Audio
+                ref={ audioRef }
+                onError={ handleSetError }>
+                <source src={ props.track.previewUrl } type='audio/x-m4a' />
+            </Audio>
+        )
+    }
 
     return (
         <Wrapper className='track-details'>

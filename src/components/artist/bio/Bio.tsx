@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import { TArtist } from '../../../store/state'
 import styled from 'styled-components'
 import Detail from './Detail'
@@ -68,13 +68,16 @@ const Details = styled.div`
 `
 
 const Bio: FC<Props> = props => {
-    const renderLink = () =>
-        <a className='action' href={ props.link || '' }>
-            View on <Bold>Apple Music</Bold> <span className='arrow' />
-        </a>
+    const renderLink = useCallback(() => {
+        return (
+            <a className='action' href={ props.link || '' }>
+                View on <Bold>Apple Music</Bold> <span className='arrow' />
+            </a>
+        )
+    }, [props.link])
 
     return (
-        <Container>
+        <Container data-testid='artist-bio'>
             <div className='cover-picture' />
             <Wrapper>
                 <Content>

@@ -1,7 +1,7 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import React from 'react'
+import { render } from '@testing-library/react'
 import 'isomorphic-fetch'
-import NotFound from '../components/not-found/NotFound';
+import NotFound from '../components/not-found/NotFound'
 
 describe('Testing the NotFound component', () => {
     test('should display the NotFound component properly', async () => {

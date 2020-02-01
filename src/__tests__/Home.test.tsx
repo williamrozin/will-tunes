@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import React, { FC } from 'react'
+import { render, fireEvent } from '@testing-library/react'
 import Home from '../components/home/Home'
-import { Provider } from 'react-redux';
-import { store } from '../store';
+import { Provider } from 'react-redux'
+import { store } from '../store'
 import { getSuggestions } from '../actions/search'
 import 'isomorphic-fetch'
 import actions from '../action-types'
 import sagaHelper from 'redux-saga-testing'
-import { put } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects'
 
 const Element: FC = () =>
     <Provider store={ store }>

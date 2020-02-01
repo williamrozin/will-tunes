@@ -1,8 +1,8 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import React from 'react'
+import { render } from '@testing-library/react'
 import 'isomorphic-fetch'
-import Album from '../components/album/Album';
-import mock from '../lib/mocks/album';
+import Album from '../components/album/Album'
+import mock from '../lib/mocks/album'
 
 describe('Testing the Album component', () => {
     test('should display the Album component properly', async () => {

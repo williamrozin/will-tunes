@@ -53,7 +53,7 @@ const Artist: FC<Props> = props => {
     }, [props.albums])
 
 
-    const renderFeatured = () => {
+    const renderFeatured = useCallback(() => {
         if (!props.featured.length) {
             return null
         }
@@ -65,16 +65,22 @@ const Artist: FC<Props> = props => {
                     {
                         props
                             .featured
-                            .map((it, index) => <Related index={ index } related={ it } />)
+                            .map((it, index) => (
+                                <Related
+                                    key={ it.id + index }
+                                    index={ index }
+                                    related={ it }
+                                />
+                            ))
                     }
                 </Featured>
             </Content>
         )
-    }
+    }, [props.featured])
 
     return (
         <>
-            <Container>
+            <Container data-testid='artist-content'>
                 <Bio
                     loading={ props.loading }
                     name={ props.artist.name }

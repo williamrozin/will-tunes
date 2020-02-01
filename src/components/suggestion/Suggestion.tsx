@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import { TSuggestion } from '../../store/state'
 import { useHistory } from 'react-router'
 import styled from 'styled-components'
@@ -18,11 +18,11 @@ const Content = styled.div`
 const Suggestion: FC<Props> = props => {
     const { push } = useHistory()
 
-    const handleGoToArtistPage = () => {
+    const handleGoToArtistPage = useCallback(() => {
         if (props.suggestion) {
             push(`/artist/${props.suggestion.id}`)
         }
-    }
+    }, [props.suggestion, push])
 
     return (
         <div className='suggestion' onClick={ handleGoToArtistPage }>

@@ -23,7 +23,7 @@ export const getResume = async () => {
         headers: true
     }
 
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= 7; i++) {
         const { quote } = await get(quoteParams).then(getOrElse)
         quotes.push(quote)
     }

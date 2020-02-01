@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import { TFeatured, artist } from '../../../store/state'
 import styled from 'styled-components'
 import { useHistory } from 'react-router'
@@ -38,10 +38,10 @@ const Related: FC<Props> = props => {
     const { push } = useHistory()
     const dispatch = useDispatch()
 
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
         dispatch({ type: actions.SET_ARTIST, value: artist })
         push(`/artist/${props.related.id}`)
-    }
+    }, [push, dispatch, props.related.id])
 
     return (
         <Content onClick={ handleClick }>
