@@ -61,6 +61,7 @@ These fake data does not have any relation with the real artist or album.
 
 - The user can play more than one track at the same time
 - At mobile devices, the arrow at the links may be rendered as an emoji
+- Artist cover image doesn't change on navigating between pages
 
 ## Screenshots
 
