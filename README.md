@@ -32,7 +32,7 @@ To run the tests:
 - Responsive design
 - Production deploy (with [Zeit Now](https://zeit.co/))
 - Tests (with jest + react-testing-library + redux-saga-testing)
-- SCSS & Styled-components design: No UI framework (such as material-ui) have been used
+- SASS & Styled-components design: No UI framework (such as material-ui) have been used
 - Developed with TypeScript
 - Debounce on search
 - Usage of `useMemo` and `useCallback` to prevent unecessary re-renders
